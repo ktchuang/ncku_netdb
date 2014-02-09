@@ -1,0 +1,43 @@
+Object Generator:
+1. UniformObjectGenerator.java
+2. MsgVertexAssociator.java
+
+Query Generator:
+1. QueryGenerator.java
+
+Road Network Process:
+1. Road2GraphFile.java
+2. MetisPartitioning.java
+3. HQNetCreator.java  (randomly generate HQNet)
+   or
+   StaticHQNetCreator.java (get old generated HQNet from input file)
+
+Query Performance:
+1. NetExp.java
+2. ROAD.java
+3. UPQ
+
+batch file example:
+java -jar Road2Graph.jar 06077\06077.cnode 06077\06077.cedge 06077\06077.txt
+java -jar MetisPartitioning.jar 06077\06077.txt pmetis.exe 4 4
+java -jar HQNetCreator.jar 06077\06077.txt.gp 06077\06077.txt.rh 06077\06077_100.vertex 50 16 06077\hqnet.txt 06077\06077.txt.hq_50_16
+java -jar QueryGenerator.jar 06077\06077.txt.gp.query 06077\06077.txt.hq_50_16 06077\query_0.6.txt 0.6
+java -jar NetExp.jar 06077\06077.txt.gp.query 06077\06077.txt.rh 06077\06077_100.vertex 06077\query_0.6.txt 10 0
+java -jar ROAD.jar 06077\06077.txt.gp.query 06077\06077.txt.rh 06077\06077_100.vertex 06077\query_0.6.txt 10 0
+java -jar UPQ.jar 06077\06077.txt.gp.query 06077\06077.txt.rh 06077\06077_100.vertex 06077\06077.txt.hq_50_16 06077\query_0.6.txt 10 0
+
+//using the same graph/RNet/HQNet and query list with different object data
+java -jar StaticHQNetCreator.jar 06077\06077.txt.gp 06077\06077.txt.rh 06077\06077_1000.vertex 06077\hqnet.txt 06077\06077.txt.hq_50_16 06077\06077.txt.hq_50_16_graph
+java -jar NetExp.jar 06077\06077.txt.gp.query 06077\06077.txt.rh 06077\06077_100.vertex 06077\query_0.6.txt 10 0
+java -jar ROAD.jar 06077\06077.txt.gp.query 06077\06077.txt.rh 06077\06077_100.vertex 06077\query_0.6.txt 10 0
+java -jar UPQ.jar 06077\06077.txt.gp.query 06077\06077.txt.rh 06077\06077_100.vertex 06077\06077.txt.hq_50_16 06077\query_0.6.txt 10 0
+
+Notice: In the road network file, the distance of an edge is scaled. (check the scale factor in Road2GraphFile.java) 
+In the program if the distance of two points is calculated using coordinates, the calculated distance also needs to be scaled. 
+
+
+UPQAdaptiveCompactLazyUpdateTurnAroundNew
+data/graph/na/na.txt.gp data/graph/na/na.txt.rh data/graph/na/na_50000.vertex data/graph/na/query_1_100_100000.txt 10 0 data/graph/na/normalQU_100000.txt data/graph/na/POI_50000_100000.txt data/graph/na/UPQmaxTAT_1.cls
+
+ROADUpdateTurnAroundNew
+data/graph/na/na.txt.gp data/graph/na/na.txt.rh data/graph/na/na_50000.vertex  data/graph/na/query_1_100_100000.txt 10 0 data/graph/na/normalQU_100000.txt data/graph/na/POI_50000_100000.txt data/graph/na/QROADmaxTAT_1.cls
