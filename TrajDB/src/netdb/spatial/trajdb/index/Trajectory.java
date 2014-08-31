@@ -27,4 +27,17 @@ public class Trajectory extends LineString {
 		  bbox.m_pHigh[1] = pnt[1];	  
 	  
   }
+  /**
+   * Convert a LineString to Trajectory object
+   * @param line
+   * @return
+   */
+  public static Trajectory lineString2Trajectory(LineString line) {
+	  Trajectory traj = new Trajectory();
+	  for (int i=0;i<line.pntList.size();i++) {
+		  double[] pnt = line.pntList.get(i);
+		  traj.insertPnt(pnt);
+	  }
+	  return traj;
+  }
 }
