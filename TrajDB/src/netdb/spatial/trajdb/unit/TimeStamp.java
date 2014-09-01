@@ -1,4 +1,4 @@
-package netdb.spatial.trajdb.index;
+package netdb.spatial.trajdb.unit;
 
 public class TimeStamp {
   private static long incTP = 0;

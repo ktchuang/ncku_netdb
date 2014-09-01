@@ -1,6 +1,6 @@
 package netdb.spatial.trajdb.sampling;
 
-import netdb.spatial.trajdb.index.LineString;
+import netdb.spatial.trajdb.unit.LineString;
 
 public interface LineStringSampling {
   public void lineInput(LineString line);

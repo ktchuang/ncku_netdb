@@ -1,4 +1,4 @@
-package netdb.spatial.trajdb.index;
+package netdb.spatial.trajdb.unit;
 
 import java.util.Arrays;
 

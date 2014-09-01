@@ -1,4 +1,5 @@
-package netdb.spatial.trajdb.index;
+package netdb.spatial.trajdb.unit;
+
 
 public class TemporalTrajectory extends Trajectory {
 	public TemporalTrajectory() {
